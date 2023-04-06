@@ -21,7 +21,7 @@ const validarJWT = ( req, res = response, next ) => {
         // La firma tambien tambien contiene los datos del payload, si se modifica
         // el payload no va a concidir con la firma y token no es valido.
 
-        const payload =  jwt.verify( // Se puede desestructurar tamien
+        const payload =  jwt.verify( // Se puede desestructurar tambien
             token,
             process.env.SECRET_JWT_SEED
         );
