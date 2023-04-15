@@ -34,11 +34,11 @@ const crearEventos = async(req, res = response ) => {
         });
     }
 
-    console.log(req.body);
+    /* console.log(req.body);
     return res.status(200).json({
         ok: true,
         msg: 'crearEventos'
-    });
+    }); */
 }
 
 const actualizarEvento = async(req, res = response ) => {
@@ -123,10 +123,6 @@ const eliminarEvento = async(req, res = response ) => {
         });
     }
 
-    return res.status(200).json({
-        ok: true,
-        msg: 'eliminarEvento'
-    });
 }
 
 module.exports = {
