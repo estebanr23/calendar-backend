@@ -2,6 +2,7 @@ const express = require('express');
 require('dotenv').config();
 const cors = require('cors');
 const { dbConnection } = require('./database/config');
+const path = require('path');
 
 // console.log(process.env);
 
@@ -15,7 +16,8 @@ dbConnection();
 app.use(cors());
 
 // Directorio publico
-app.use( express.static('public') );
+// app.use( express.static('public') ); En desarrollo
+app.use( express.static(path.join( __dirname, 'public')) );
 
 // lectura y parseo del body. Los datos q vienen en json pasan por este middleware
 app.use( express.json() )
@@ -24,8 +26,9 @@ app.use( express.json() )
 app.use('/api/auth', require('./routes/auth') );
 app.use('/api/events', require('./routes/events') );
 
-app.get('*', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
+// Configuracion de rutas para produccion
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 /* app.get('/', (req, res) => {
